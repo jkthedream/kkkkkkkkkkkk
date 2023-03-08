@@ -4,7 +4,8 @@ titulo.textContent = 'Aparecida Nutricionista'
 
 //selecionando todos os pacientes
 let pacientes = document.querySelectorAll('.paciente')
-console.log(pacientes)
+//console.log(pacientes)
+
 //percorrendo lista de pacientes
 for (var i = 0; i <= pacientes.length; i++){
     let paciente = pacientes[i]
@@ -15,15 +16,34 @@ for (var i = 0; i <= pacientes.length; i++){
     let alturaTd = paciente.querySelector('.info-altura')
     let altura = alturaTd.textContent
 
-
-    let imcTd = paciente.querySelector('.info-imc')
-    let imc = calculaImc(peso, altura)
-    imcTd.textContent = imc
-
-
-
-
 }
+
+let pesoEhValido = validaPeso(peso)
+let alturaEhValido = validaAltura (altura)
+
+    if(!pesoEhValido){
+        console.log('peso invalido')
+        pesoEhValido = false
+        imcTd.textContent = ('peso ivalido')
+        paciente.classList.add('paciente invalido')
+
+    }
+
+    
+    if(!alteraEhValido){
+        console.log('altura invalido')
+        pesoEhValido = false
+        imcTd.textContent ='altura ivalido'
+        paciente.classList.add('paciente invalido')
+
+    }
+
+    if(pesoEhValido && alturaEhValido){
+        let imc = calculaImc(peso, altura)
+        imcTd.textContent = imc
+    }
+
+
 //calculando imc
 function calculaImc (peso, altura){
     let imc = 0
@@ -32,6 +52,19 @@ function calculaImc (peso, altura){
     return imc.toFixed(2)
 }
 
+function validaPeso(peso){
+    if(peso >= 0 && peso <= 1000){
+        return true
+    }else{
+        return false
+    }
+ }  
 
-
-imcTd.textContent = imc
+    function validaAltura(altura){
+        if(altura >= 0 && altura <= 3.00){
+            return true
+        }else{
+            return false
+        }
+}
+console.log
